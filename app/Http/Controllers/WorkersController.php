@@ -70,4 +70,22 @@ class WorkersController extends Controller
             });
         })->download('xls');
     }
+
+
+
+    /**
+     * Remove worker from database.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeWorker($id) {
+        $worker = Worker::find($id);
+
+        if($worker) {
+            $worker->delete($id);
+        }
+
+        return back();
+    }
 }
