@@ -12,3 +12,4 @@
 */
 
 Route::get('/workers', 'WorkersController@getWorkersPage');
+Route::post('/import-workers', 'WorkersController@importWorkers');
