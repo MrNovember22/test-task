@@ -12,4 +12,6 @@
 */
 
 Route::get('/workers', 'WorkersController@getWorkersPage');
+Route::get('/export-workers', 'WorkersController@exportWorkers');
+
 Route::post('/import-workers', 'WorkersController@importWorkers');

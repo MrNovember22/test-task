@@ -51,4 +51,23 @@ class WorkersController extends Controller
 
         return back();
     }
+
+
+
+    /**
+     * Export workers to excel file.
+     * Download exportWorkers.xls file.
+     *
+     * @return mixed
+     */
+    public function exportWorkers() {
+        $data = Worker::all()->toArray();
+
+        return Excel::create('exportWorkers', function($excel) use ($data) {
+            $excel->sheet('Sheet1', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download('xls');
+    }
 }
