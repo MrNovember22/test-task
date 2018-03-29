@@ -31,7 +31,7 @@ class WorkersController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function importWorkers(Request $request) {
-        if($request->hasFile('import-file')){
+        if($request->hasFile('import-file')) {
             Excel::load($request->file('import-file')->getRealPath(), function ($reader) {
 
                 foreach ($reader->toArray() as $key => $row) {
