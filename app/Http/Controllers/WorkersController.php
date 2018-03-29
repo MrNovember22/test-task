@@ -15,12 +15,12 @@ class WorkersController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getWorkersPage()
-    {
+    public function getWorkersPage() {
         $workers = Worker::all();
 
         return view('workers', ['workers' => $workers]);
     }
+
 
 
 
@@ -54,6 +54,7 @@ class WorkersController extends Controller
 
 
 
+
     /**
      * Export workers to excel file.
      * Download exportWorkers.xls file.
@@ -69,6 +70,32 @@ class WorkersController extends Controller
             });
         })->download('xls');
     }
+
+
+
+
+    /**
+     * Edit worker's info.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function editWorker(Request $request, $id) {
+        $worker = Worker::find($id);
+        $request->all();
+
+        $worker->famimliya = $request->famimliya;
+        $worker->imya = $request->imya;
+        $worker->otchestvo = $request->otchestvo;
+        $worker->god_rozhdeniya = $request->god_rozhdeniya;
+        $worker->dolzhnost = $request->dolzhnost;
+        $worker->zp_v_god = $request->zp_v_god;
+        $worker->save();
+
+        return back();
+    }
+
 
 
 
