@@ -14,6 +14,7 @@
 Route::get('/workers', 'WorkersController@getWorkersPage');
 Route::get('/export-workers', 'WorkersController@exportWorkers');
 
+Route::post('/worker/create', 'WorkersController@createWorker');
 Route::post('/import-workers', 'WorkersController@importWorkers');
 Route::patch('/worker/edit/{id}', 'WorkersController@editWorker');
 Route::delete('/workers/{id}/remove', 'WorkersController@removeWorker');

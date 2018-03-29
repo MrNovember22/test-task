@@ -27,13 +27,54 @@
                                     <form method="POST" action="{{ action('WorkersController@importWorkers') }}" enctype="multipart/form-data" class="form-row">
                                         {{ csrf_field() }}
                                         <div class="col-md-10">
-                                            <input type="file" name="import-file" class="form-control">
+                                            <label class="file">
+                                                <input type="file" class="file-input" name="import-file">
+                                                <span class="file-control"></span>
+                                            </label>
                                         </div>
 
                                         <div class="col-md-2">
                                             <button type="submit" class="btn btn-primary">Import file</button>
                                         </div>
                                     </form>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-worker-modal">
+                                        Create new worker
+                                    </button>
+
+                                    <div class="modal fade" id="create-worker-modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title">Create new worker</h4>
+                                                </div>
+                                                <form method="POST" action="{{ action('WorkersController@createWorker') }}" class="form-row">
+                                                    <div class="modal-body">
+                                                            {{ csrf_field() }}
+
+                                                            <input type="text" class="form-group form-control" name="famimliya" placeholder="Фамилия">
+                                                            <input type="text" class="form-group form-control" name="imya" placeholder="Имя">
+                                                            <input type="text" class="form-group form-control" name="otchestvo" placeholder="Отчество">
+                                                            <input type="text" class="form-group form-control" name="god_rozhdeniya" placeholder="Год рождения">
+                                                            <input type="text" class="form-group form-control" name="dolzhnost" placeholder="Должность">
+                                                            <input type="text" class="form-group form-control" name="zp_v_god" placeholder="Зп в год">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                            Close
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Save changes
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,26 +132,27 @@
                                                     </button>
                                                     <h4 class="modal-title">Edit info</h4>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <form method="POST" action="{{ action('WorkersController@editWorker', $worker->id) }}" class="form-row">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('PATCH') }}
+                                                <form method="POST" action="{{ action('WorkersController@editWorker', $worker->id) }}" class="form-row">
+                                                    <div class="modal-body">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PATCH') }}
 
-                                                        <input type="text" class="form-group form-control" name="famimliya" value="{{ $worker->famimliya }}">
-                                                        <input type="text" class="form-group form-control" name="imya" value="{{ $worker->imya }}">
-                                                        <input type="text" class="form-group form-control" name="otchestvo" value="{{ $worker->otchestvo }}">
-                                                        <input type="text" class="form-group form-control" name="god_rozhdeniya" value="{{ $worker->god_rozhdeniya }}">
-                                                        <input type="text" class="form-group form-control" name="dolzhnost" value="{{ $worker->dolzhnost }}">
-                                                        <input type="text" class="form-group form-control" name="zp_v_god" value="{{ $worker->zp_v_god }}">
-
+                                                            <input type="text" class="form-group form-control" name="famimliya" value="{{ $worker->famimliya }}">
+                                                            <input type="text" class="form-group form-control" name="imya" value="{{ $worker->imya }}">
+                                                            <input type="text" class="form-group form-control" name="otchestvo" value="{{ $worker->otchestvo }}">
+                                                            <input type="text" class="form-group form-control" name="god_rozhdeniya" value="{{ $worker->god_rozhdeniya }}">
+                                                            <input type="text" class="form-group form-control" name="dolzhnost" value="{{ $worker->dolzhnost }}">
+                                                            <input type="text" class="form-group form-control" name="zp_v_god" value="{{ $worker->zp_v_god }}">
+                                                    </div>
+                                                    <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">
                                                             Close
                                                         </button>
                                                         <button type="submit" class="btn btn-primary">
                                                             Save changes
                                                         </button>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +164,7 @@
 
                         <div class="col-md-12">
                             <a href="{{ url('export-workers') }}" class="btn btn-dark pull-right">
-                                <button class="btn btn-info">
+                                <button class="btn btn-primary">
                                     Export file
                                 </button>
                             </a>
@@ -134,5 +176,6 @@
     </div>
 
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>

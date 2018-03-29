@@ -75,6 +75,30 @@ class WorkersController extends Controller
 
 
     /**
+     * Create new worker.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createWorker(Request $request) {
+        $worker = new Worker;
+        $request->all();
+
+        $worker->famimliya = $request->famimliya;
+        $worker->imya = $request->imya;
+        $worker->otchestvo = $request->otchestvo;
+        $worker->god_rozhdeniya = $request->god_rozhdeniya;
+        $worker->dolzhnost = $request->dolzhnost;
+        $worker->zp_v_god = $request->zp_v_god;
+        $worker->save();
+
+        return back();
+    }
+
+
+
+
+    /**
      * Edit worker's info.
      *
      * @param Request $request
