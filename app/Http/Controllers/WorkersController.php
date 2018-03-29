@@ -64,6 +64,17 @@ class WorkersController extends Controller
     public function exportWorkers() {
         $data = Worker::all()->toArray();
 
+        $data = array_map(function($data) {
+            return array(
+                'Фамилия' => $data['famimliya'],
+                'Имя' => $data['imya'],
+                'Отчество' => $data['otchestvo'],
+                'Год рождения' => $data['god_rozhdeniya'],
+                'Должность' => $data['dolzhnost'],
+                'Зп в год' => $data['zp_v_god']
+            );
+        }, $data);
+
         return Excel::create('exportWorkers', function($excel) use ($data) {
                 $excel->sheet('Sheet1', function($sheet) use ($data) {
                     $sheet->fromArray($data);
