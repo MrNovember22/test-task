@@ -21,6 +21,7 @@ class CreateWorkersTable extends Migration
             $table->integer('god_rozhdeniya');
             $table->text('dolzhnost');
             $table->text('zp_v_god');
+            $table->timestamps();
         });
     }
 
